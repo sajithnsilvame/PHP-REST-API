@@ -2,7 +2,7 @@
 This is a simple PHP REST API
 ## App Info
 ### Author
-sajith n silva sajithnsilvame https://sajithnsilva.me/
+sajith n silva https://sajithnsilva.me/ 
 ### Version
 1.0.0
 ### License
