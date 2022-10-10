@@ -1,9 +1,10 @@
 # PHP REST API
 This is a simple PHP REST API
-## App Info
-### Author
+
+### App Info
+#### Author
 sajith n silva https://sajithnsilva.me/ 
-### Version
+#### Version
 1.0.0
-### License
+#### License
 This project is licensed under the MIT License

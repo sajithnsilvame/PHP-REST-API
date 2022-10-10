@@ -12,7 +12,7 @@ class Category{
         $this->conn = $db;
     }
 
-    // view all categories
+    // view all categories  ======>>> ======>>> 
     public function read_category()
     {
         // Create query
@@ -33,7 +33,7 @@ class Category{
         return $stmt;
     }
 
-    // view a category
+    // view a category ======>>> ======>>>
     public function read_single_category(){
         $query = 'SELECT 
             id,
@@ -57,4 +57,108 @@ class Category{
         $this->name = $row['name'];
 
     }
+
+    // create category ======>>> ======>>>
+    public function create_category(){
+        $query = 'INSERT INTO
+        '.$this->table.'
+        SET
+          name = :name
+        ';
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->name = htmlspecialchars(strip_tags($this->name));
+
+        $stmt->bindParam('name', $this->name);
+
+        if($stmt->execute()){
+            return true;
+        }
+    
+        // Print error if something goes wrong
+        printf("Error: %s.\n", $stmt->error);
+
+        return false;
+
+    }
+
+    // update category
+    public function update_category(){
+        $query = 'UPDATE
+            ' .$this->table. '
+            SET
+              name = :name
+            WHERE
+             id = :id  
+        ';
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        $stmt->bindParam('name', $this->name);
+        $stmt->bindParam('id', $this->id);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        // otherwise get error
+        printf("Error: %s .\n", $stmt->error);
+        return false;
+
+    }
+
+    // delete category
+    public function delete_category(){
+        $query = 'DELETE FROM 
+            ' .$this->table. '
+
+            WHERE
+              id = :id
+        ';
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // bind id
+        $stmt->bindParam('id', $this->id);
+
+        if($stmt->execute()){
+            return true;
+        }else{
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

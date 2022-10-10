@@ -13,3 +13,23 @@ $db = $database->connect();
 
 $category = new Category($db);
 
+$data = json_decode(file_get_contents("php://input"));
+
+$category->name = $data->name;
+
+if($category->create_category()){
+    echo json_encode(array('message:' => 'category created'));
+}else{
+    echo json_encode(array('message:' => 'category not created'));
+
+}
+
+
+
+
+
+
+
+
+
+
